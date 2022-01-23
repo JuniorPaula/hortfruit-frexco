@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { useQuery } from 'react-query';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+import { Drawer } from '@material-ui/core';
+import { LinearProgress } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
+import { AddShoppingCart } from '@material-ui/icons';
+import { Badge } from '@material-ui/core';
+
+import { Wrapper } from './App.styles';
+import { ICartItemType } from './interfaces/ICartItemType';
+import { BASE_URL } from './config/urlConfig';
+
+const getProducts = async (): Promise<ICartItemType[]> => {
+  return await (await fetch(BASE_URL)).json();
+};
+
+const App = () => {
+  const { data, isLoading, error } = useQuery<ICartItemType[]>(
+    'products',
+    getProducts,
   );
-}
+  console.log(data);
+
+  const getTotalItem = () => null;
+  const handleAddToCart = () => null;
+  const handleRemoveFromCart = () => null;
+
+  // eslint-disable-next-line react/react-in-jsx-scope
+  return <div className="App">start</div>;
+};
 
 export default App;
