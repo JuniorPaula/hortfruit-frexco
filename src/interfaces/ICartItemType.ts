@@ -7,4 +7,5 @@ export interface ICartItemType {
   genus: string;
   order: string;
   nutritions: INutrients;
+  amount: number;
 }
