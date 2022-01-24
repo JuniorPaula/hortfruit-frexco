@@ -9,7 +9,7 @@ import { Grid } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
 import { Badge } from '@material-ui/core';
 
-import { StyledButton, Title, Wrapper } from './App.styles';
+import { Container, StyledButton, Title, Wrapper } from './App.styles';
 import { ICartItemType } from './interfaces/ICartItemType';
 import { BASE_URL } from './config/urlConfig';
 
@@ -61,28 +61,34 @@ const App: React.FC = () => {
   if (error) return <div>Ops!! Algo deu errado. ;(</div>;
 
   return (
-    <Wrapper>
-      <Title>HortiFruti</Title>
-      <Drawer anchor="right" open={cartOpen} onClose={() => setCartOpen(false)}>
-        <Cart
-          cartItem={cartItems}
-          addToCart={handleAddToCart}
-          removeFromCart={handleRemoveFromCart}
-        />
-      </Drawer>
-      <StyledButton onClick={() => setCartOpen(true)}>
-        <Badge badgeContent={getTotalItems(cartItems)} color="error">
-          <AddShoppingCart />
-        </Badge>
-      </StyledButton>
-      <Grid container spacing={3}>
-        {data?.map((item) => (
-          <Grid item key={item.id} xs={12} sm={4}>
-            <Item item={item} handleAddToCart={handleAddToCart} />
-          </Grid>
-        ))}
-      </Grid>
-    </Wrapper>
+    <Container>
+      <Wrapper>
+        <Title>Hortifruti do SkyWalker</Title>
+        <Drawer
+          anchor="right"
+          open={cartOpen}
+          onClose={() => setCartOpen(false)}
+        >
+          <Cart
+            cartItem={cartItems}
+            addToCart={handleAddToCart}
+            removeFromCart={handleRemoveFromCart}
+          />
+        </Drawer>
+        <StyledButton onClick={() => setCartOpen(true)}>
+          <Badge badgeContent={getTotalItems(cartItems)} color="error">
+            <AddShoppingCart />
+          </Badge>
+        </StyledButton>
+        <Grid container spacing={3}>
+          {data?.map((item) => (
+            <Grid item key={item.id} xs={12} sm={4}>
+              <Item item={item} handleAddToCart={handleAddToCart} />
+            </Grid>
+          ))}
+        </Grid>
+      </Wrapper>
+    </Container>
   );
 };
 

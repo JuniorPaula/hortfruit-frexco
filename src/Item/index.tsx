@@ -11,10 +11,16 @@ type Props = {
 const Item: React.FC<Props> = ({ item, handleAddToCart }) => (
   <Wrapper>
     <div>
-      <h3>{item.genus}</h3>
-      <h4>{item.name}</h4>
-      <p>{item.family}</p>
-      <p>{item.order}</p>
+      <h2>{item.name}</h2>
+      <p>
+        Gênero: <strong>{item.genus}</strong>
+      </p>
+      <p>
+        Família: <strong>{item.family}</strong>
+      </p>
+      <p>
+        Ordem: <strong>{item.order}</strong>
+      </p>
     </div>
     <Button onClick={() => handleAddToCart(item)}>Adicionar ao Carrinho</Button>
   </Wrapper>
